@@ -6,7 +6,8 @@ def check_contents(message):                              #TODO possibly change 
     if message.content.startswith('$'):
        reply = check_verbage(message)
        return reply
-    else: return #prevents error 400 bad request in terminal
+    else:
+        return #prevents error 400 bad request in terminal
 
 def check_verbage(message):
     if message.content.__contains__('hey'):
