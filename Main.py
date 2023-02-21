@@ -13,7 +13,7 @@ bot = commands.Bot(command_prefix='>', intents=discord.Intents.all()) #https://d
 
 @bot.event
 async def on_ready(): #https://superfastpython.com/asyncio-async-def/
-    print(Console_Text.GetTime(), 'Logged in as:',bot.user.name)
+    print(Console_Text.Get_Time(), 'Logged in as:',bot.user.name)
     print("ID:",bot.user.id)
     print('-----------------------------------------')
     
