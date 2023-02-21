@@ -2,13 +2,16 @@ import discord
 import os
 import Console_Text
 
-
-def check_contents(message):                              #TODO possibly change to switch statement for readabilty  
+def Check_Intent(message):
     if message.content.startswith('$'):
-       reply = check_verbage(message)
-       return reply
+        return True
     else:
         return False #prevents error 400 bad request in terminal
+
+def check_contents(message):
+    reply = check_verbage(message)
+    return reply
+
 
 def check_verbage(message):
     if message.content.__contains__('hey'):
