@@ -8,7 +8,7 @@ def check_contents(message):                              #TODO possibly change 
        reply = check_verbage(message)
        return reply
     else:
-        return #prevents error 400 bad request in terminal
+        return False #prevents error 400 bad request in terminal
 
 def check_verbage(message):
     if message.content.__contains__('hey'):
