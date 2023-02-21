@@ -1,5 +1,6 @@
 import discord
 import os
+import Console_Text
 
 
 def check_contents(message):                              #TODO possibly change to switch statement for readabilty  
@@ -12,5 +13,5 @@ def check_contents(message):                              #TODO possibly change 
 def check_verbage(message):
     if message.content.__contains__('hey'):
         text = "Hi everybody! ＼(^o^)／"
-        print("Said hi") #makes note in terminal
+        print(GetTime(), "Said hi") #makes note in terminal
     return text
