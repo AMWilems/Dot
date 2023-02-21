@@ -1,7 +1,7 @@
 import discord #https://discordpy.readthedocs.io/en/stable/
 import os
 import chat_response
-import Console_Text
+from Console_Text import GetTime
 
 from discord.ext import commands
 from dotenv import load_dotenv #https://pypi.org/project/python-dotenv/
@@ -13,7 +13,7 @@ bot = commands.Bot(command_prefix='>', intents=discord.Intents.all()) #https://d
 
 @bot.event
 async def on_ready(): #https://superfastpython.com/asyncio-async-def/
-    print(GetTime(), 'Logged in as')
+    print(GetTime, 'Logged in as')
     print(bot.user.name)
     print(bot.user.id)
     print('------')
