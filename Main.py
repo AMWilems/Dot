@@ -19,7 +19,7 @@ async def on_ready(): #https://superfastpython.com/asyncio-async-def/
     
 @bot.event
 async def on_message(message):
-    if (message.author.bot or (check_contents(message) == False)):
+    if (message.author.bot or (chat_response.check_contents(message) == False)):
         return
     else:
         await message.channel.send(chat_response.check_contents(message))
