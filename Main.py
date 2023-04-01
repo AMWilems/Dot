@@ -16,14 +16,38 @@ async def on_ready(): #https://superfastpython.com/asyncio-async-def/
     print(Console_Text.Get_Time(), 'Logged in as:',bot.user.name)
     print("ID:",bot.user.id)
     print('-----------------------------------------')
-    
+
+        
+
+#joins voice channel with the user that called the function
+@bot.command(name='join', help='Tells bot to join voice channel')
+async def join(ctx):
+    #check if user is in a voice channel
+    if not ctx.message.author.voice:
+        await ctx.send("{} is not connected to a voice channel".format(ctx.message.author.name))
+        return
+    else:
+        channel = ctx.message.author.voice.channel
+    #join channel
+    await channel.connect()
+
+@bot.command(name='leave', help='Tells bot to leave voice channel')
+async def leave(ctx):
+    voice_client = ctx.message.guild.voice_client
+    #executes if bot is currently in a voice channel
+    if voice_client.is_connected():
+        await voice_client.disconnect()
+    #executes if bot is not currently in a voice channel
+    else:
+        await ctx.send("Dot is not currently in a voice channel.")
+'''
 @bot.event
 async def on_message(message):
     if (message.author.bot or (chat_response.Check_Intent(message) == False)):
         return
     else:
         await message.channel.send(chat_response.check_contents(message))
-
+        '''
     
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")

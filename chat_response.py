@@ -18,6 +18,7 @@ def check_contents(message):
 
 
 def check_verbage(message):
+    text = 'no message recognized'
     if message.content.__contains__('hey'):
         text = "Hi everybody! ＼(^o^)／"
         print(Console_Text.Get_Time(), "Said hi") #makes note in terminal
