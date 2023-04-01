@@ -17,6 +17,14 @@ async def on_ready(): #https://superfastpython.com/asyncio-async-def/
     print("ID:",bot.user.id)
     print('-----------------------------------------')
 
+@bot.event
+async def on_message(message):
+    #without this line, commands won't work (it takes all chat messages and passes them into on_message)
+    await bot.process_commands(message)
+    if (message.author.bot or (chat_response.Check_Intent(message) == False)):
+        return
+    else:
+        await message.channel.send(chat_response.check_contents(message))
         
 
 #joins voice channel with the user that called the function
@@ -40,14 +48,8 @@ async def leave(ctx):
     #executes if bot is not currently in a voice channel
     else:
         await ctx.send("Dot is not currently in a voice channel.")
-'''
-@bot.event
-async def on_message(message):
-    if (message.author.bot or (chat_response.Check_Intent(message) == False)):
-        return
-    else:
-        await message.channel.send(chat_response.check_contents(message))
-        '''
+
+
     
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
