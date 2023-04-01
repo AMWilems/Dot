@@ -50,29 +50,42 @@ async def leave(ctx):
     else:
         await ctx.send("Dot is not currently in a voice channel.")
 
-@bot.command(name='play_song', help='To play song')
+@bot.command(name='play', help='To play song')
 async def play(ctx,url):
-
-    server = ctx.message.guild
-    voice_channel = server.voice_client
-
-    async with ctx.typing():
-        filename = await MusicSource.from_url(url, loop=bot.loop)
-        voice_channel.play(discord.FFmpegPCMAudio(executable="ffmpeg.exe", source=filename))
-    await ctx.send('**Now playing:** {}'.format(filename))
-
-
-'''try :
+    try :
         server = ctx.message.guild
         voice_channel = server.voice_client
 
         async with ctx.typing():
             filename = await MusicSource.from_url(url, loop=bot.loop)
-            voice_channel.play(discord.FFmpegPCMAudio(executable="ffmpeg.exe", source=filename))
+            voice_channel.play(discord.FFmpegPCMAudio(executable="ffmpeg", source=filename))
         await ctx.send('**Now playing:** {}'.format(filename))
     except:
-        await ctx.send("The bot is not connected to a voice channel.")'''
+        await ctx.send("The bot is not connected to a voice channel.")
 
+@bot.command(name='pause', help='Pauses song')
+async def pause(ctx):
+    vc = ctx.message.guild.voice_client
+    if vc.is_playing():
+        vc.pause()
+    else:
+        await ctx.send("Lmao can't pause what isn't playing")
+
+@bot.command(name='resume')
+async def resume(ctx):
+    vc = ctx.message.guild.voice_client
+    if vc.is_paused():
+        vc.resume()
+    else:
+        await ctx.send("Can't unpause what wasn't paused, dummy")
+
+@bot.command(name='stop')
+async def stop(ctx):
+    vc = ctx.message.guild.voice_client
+    if vc.is_paused() or vc.is_playing():
+        vc.stop()
+    else:
+        await ctx.send("Can't stop if we never started")
 
     
 load_dotenv()
