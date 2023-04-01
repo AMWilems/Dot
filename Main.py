@@ -2,6 +2,7 @@ import discord #https://discordpy.readthedocs.io/en/stable/
 import os
 import chat_response
 import Console_Text
+from Music_Util import MusicSource
 
 from discord.ext import commands
 from dotenv import load_dotenv #https://pypi.org/project/python-dotenv/
@@ -48,6 +49,29 @@ async def leave(ctx):
     #executes if bot is not currently in a voice channel
     else:
         await ctx.send("Dot is not currently in a voice channel.")
+
+@bot.command(name='play_song', help='To play song')
+async def play(ctx,url):
+
+    server = ctx.message.guild
+    voice_channel = server.voice_client
+
+    async with ctx.typing():
+        filename = await MusicSource.from_url(url, loop=bot.loop)
+        voice_channel.play(discord.FFmpegPCMAudio(executable="ffmpeg.exe", source=filename))
+    await ctx.send('**Now playing:** {}'.format(filename))
+
+
+'''try :
+        server = ctx.message.guild
+        voice_channel = server.voice_client
+
+        async with ctx.typing():
+            filename = await MusicSource.from_url(url, loop=bot.loop)
+            voice_channel.play(discord.FFmpegPCMAudio(executable="ffmpeg.exe", source=filename))
+        await ctx.send('**Now playing:** {}'.format(filename))
+    except:
+        await ctx.send("The bot is not connected to a voice channel.")'''
 
 
     
