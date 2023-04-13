@@ -34,6 +34,9 @@ async def on_schedule():
 @tasks.loop(minutes = 1.0) #set to 1 for testing purposes
 async def help_schedule():
     message = "use $ to chat with me\nuse < to tell me what to do! "
+    channel = client.get_channel(dots-playpen)
+    await user.channel.send(message)
+    
 @bot.event
 async def on_message(message): 
     global sched
