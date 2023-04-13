@@ -34,7 +34,8 @@ async def on_schedule():
     print(Console_Text.Get_Time(), "scheduled weather sent") #makes note in terminal
     await channel.send(assist)
     print(Console_Text.Get_Time(), "scheduled help sent") #makes note in terminal
-
+    
+"""
 @bot.event
 async def on_message(message): 
     global sched
@@ -43,6 +44,7 @@ async def on_message(message):
         user = message
         on_schedule.start()
         sched = True
+"""
 
 @bot.event  #(name='on message', help='placing $ in front of something may give a response!')
 async def on_message(message):
