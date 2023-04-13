@@ -36,7 +36,7 @@ async def help_schedule():
     message = "use $ to chat with me\nuse < to tell me what to do! "
     channel = client.get_channel(dots-playpen)
     await user.channel.send(message)
-    
+    print(Console_Text.Get_Time(), "sent help") #makes note in terminal
 @bot.event
 async def on_message(message): 
     global sched

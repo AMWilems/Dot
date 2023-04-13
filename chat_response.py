@@ -41,7 +41,7 @@ def check_verbage(message):
     
     else:
         text = "hmm I don't know that one"
-        print(Console_Text.Get_Time(), "unknown command: ", message.content)
+        print(Console_Text.Get_Time(), "unknown command: ", message.content, meesage)
     
     return text
 
