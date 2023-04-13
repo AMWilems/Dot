@@ -23,5 +23,6 @@ def get_meme():
     }
 
     info = requests.request("GET", url, headers=headers)
-    response = info[0]
-    return(str(response["url"]))
+    temp = info[0]
+    response = str(response["url"])
+    return(response)
