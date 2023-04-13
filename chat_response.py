@@ -45,15 +45,8 @@ def check_verbage(message):
         print(Console_Text.Get_Time(), "made a funny")
     
     elif message.content.__contains__('meme'):
-        url = "https://reddit-meme.p.rapidapi.com/memes/trending"
-        headers = {
-	        "X-RapidAPI-Key": "3e8789e929msh7d6211db050d85cp146690jsneccd5efcbf28",
-	        "X-RapidAPI-Host": "reddit-meme.p.rapidapi.com"
-        }
-        info = requests.request("GET", url, headers=headers)
-        temp = info[0]
-        text = response["url"]
-        print(Console_Text.Get_Time(), "heheheh meme time")
+        text = Jokes.get_meme
+        print(Console_Text.Get_Time(), "heheheh meme")
         
     else:
         text = "hmm I don't know that one"
