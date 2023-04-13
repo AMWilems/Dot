@@ -94,7 +94,7 @@ async def pause(ctx):
     else:
         await ctx.send("Lmao can't pause what isn't playing") #nice
 
-@bot.command(name='resume' help='resumes song')
+@bot.command(name='resume', help='resumes song')
 async def resume(ctx):
     vc = ctx.message.guild.voice_client
     if vc.is_paused():
