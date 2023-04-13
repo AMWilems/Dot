@@ -13,7 +13,8 @@ def get_joke():
     temp = json.loads(info.text)
     response = temp[0]
     return(response['joke'])
-
+    
+"""
 def get_meme():
     url = "https://reddit-meme.p.rapidapi.com/memes/trending"
 
@@ -24,5 +25,5 @@ def get_meme():
 
     info = requests.request("GET", url, headers=headers)
     temp = info[0]
-    response = str(response["url"])
-    return(response)
+    return(response["url"])
+"""
