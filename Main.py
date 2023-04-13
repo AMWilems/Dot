@@ -28,7 +28,7 @@ async def on_ready(): #https://superfastpython.com/asyncio-async-def/
 @tasks.loop(minutes = 180)
 async def on_schedule():
     message = get_weather()
-    print(Console_Text.Get_Time(), "Weather Report") #makes note in terminal
+    print(Console_Text.Get_Time(), "3 hour Weather Report") #makes note in terminal
     await user.channel.send(message)
 
     
@@ -41,7 +41,7 @@ async def on_message(message):
         on_schedule.start()
         sched = True
 
-@bot.event
+@bot.event(name='on message', help='placing $ in front of something may give a response!')
 async def on_message(message):
     #without this line, commands won't work (it takes all chat messages and passes them into on_message)
     await bot.process_commands(message)
@@ -92,23 +92,23 @@ async def pause(ctx):
     if vc.is_playing():
         vc.pause()
     else:
-        await ctx.send("Lmao can't pause what isn't playing")
+        await ctx.send("Lmao can't pause what isn't playing") #nice
 
-@bot.command(name='resume')
+@bot.command(name='resume' help='resumes song')
 async def resume(ctx):
     vc = ctx.message.guild.voice_client
     if vc.is_paused():
         vc.resume()
     else:
-        await ctx.send("Can't unpause what wasn't paused, dummy")
+        await ctx.send("Can't unpause what wasn't paused, dummy") #nice
 
-@bot.command(name='stop')
+@bot.command(name='stop', help='stops song')
 async def stop(ctx):
     vc = ctx.message.guild.voice_client
     if vc.is_paused() or vc.is_playing():
         vc.stop()
     else:
-        await ctx.send("Can't stop if we never started")
+        await ctx.send("Can't stop if we never started") #nice
 
 
 
