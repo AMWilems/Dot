@@ -24,14 +24,14 @@ async def on_ready(): #https://superfastpython.com/asyncio-async-def/
     print('-----------------------------------------')
 
 
-@tasks.loop(minutes = 1)
+@tasks.loop(minutes = 1.0)
 async def on_schedule():
     message = get_weather()
     print(Console_Text.Get_Time(), "3 hour Weather Report") #makes note in terminal
     await user.channel.send(message)
     
 
-@tasks.loop(minutes = 1) #set to 1 for testing purposes
+@tasks.loop(minutes = 1.0) #set to 1 for testing purposes
 async def help_schedule():
     message = "use $ to chat with me\nuse < to tell me what to do! "
 @bot.event

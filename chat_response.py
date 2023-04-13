@@ -32,7 +32,7 @@ def check_verbage(message):
         print(Console_Text.Get_Time(), "Weather Report") #makes note in terminal
 
     elif message.content.__contains__('brew coffee'):
-        text = "This server is a teapot, and it cannot brew coffee."
+        text = "This server is a teapot, and it cannot brew coffee. error 418"
         print(Console_Text.Get_Time(),"error 418")
     
     elif message.content.__contains__('your stupid'):
@@ -41,7 +41,7 @@ def check_verbage(message):
     
     else:
         text = "hmm I don't know that one"
-        print(Console_Text.Get_Time(), "unknown command: ", message)
+        print(Console_Text.Get_Time(), "unknown command: ", message.content)
     
     return text
 
