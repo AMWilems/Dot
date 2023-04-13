@@ -1,11 +1,11 @@
 import requests
 import json
 
-url = "https://sus.p.rapidapi.com/api/"
+url = "https://jokes-by-api-ninjas.p.rapidapi.com/v1/jokes"
 
 headers = {
 	"X-RapidAPI-Key": "3e8789e929msh7d6211db050d85cp146690jsneccd5efcbf28",
-	"X-RapidAPI-Host": "sus.p.rapidapi.com"
+	"X-RapidAPI-Host": "jokes-by-api-ninjas.p.rapidapi.com"
 }
 
 def get_joke():
