@@ -10,4 +10,4 @@ headers = {
 
 def get_joke():
     response = requests.request("GET", url, headers=headers)
-    return(json.dumps(response.text))
+    return(response.text["joke"])
