@@ -16,6 +16,7 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='>', intents=discord.Intents.all()) #https://discordpy.readthedocs.io/en/stable/ext/commands/commands.html
 user  = False
 sched = False
+playpen = 1076484086387978290
 
 @bot.event
 async def on_ready(): #https://superfastpython.com/asyncio-async-def/
@@ -27,6 +28,7 @@ async def on_ready(): #https://superfastpython.com/asyncio-async-def/
 @tasks.loop(minutes = 1.0)
 async def on_schedule():
     message = get_weather()
+    channel = client.get_channel(playpen)
     print(Console_Text.Get_Time(), "3 hour Weather Report") #makes note in terminal
     await user.channel.send(message)
     
@@ -34,7 +36,7 @@ async def on_schedule():
 @tasks.loop(minutes = 1.0) #set to 1 for testing purposes
 async def help_schedule():
     message = "use $ to chat with me\nuse < to tell me what to do! "
-    channel = client.get_channel(dots-playpen)
+    channel = client.get_channel(playpen)
     await user.channel.send(message)
     print(Console_Text.Get_Time(), "sent help") #makes note in terminal
 @bot.event
