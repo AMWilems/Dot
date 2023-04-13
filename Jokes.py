@@ -9,5 +9,6 @@ headers = {
 }
 
 def get_joke():
-    response = requests.request("GET", url, headers=headers)
-    return(response.text["joke"])
+    info = requests.request("GET", url, headers=headers)
+    response = json.loads(info.text)
+    return(response["joke"])
