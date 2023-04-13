@@ -41,7 +41,7 @@ def check_verbage(message):
         print(Console_Text.Get_Time(),'get wrecked')
     
     elif message.content.__contains__('joke'):
-        text = get_joke()
+        text = Jokes.get_joke()
         print(Console_Text.Get_Time(), "made a funny")
     else:
         text = "hmm I don't know that one"
