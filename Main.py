@@ -13,25 +13,29 @@ from dotenv import load_dotenv #https://pypi.org/project/python-dotenv/
 
 intents = discord.Intents.default() #https://discordpy.readthedocs.io/en/stable/intents.html
 intents.message_content = True
-#TODO determine what intents are needed
 bot = commands.Bot(command_prefix='>', intents=discord.Intents.all()) #https://discordpy.readthedocs.io/en/stable/ext/commands/commands.html
 user  = False
 sched = False
+playpen = 1076484086387978290
 
 @bot.event
 async def on_ready(): #https://superfastpython.com/asyncio-async-def/
     print(Console_Text.Get_Time(), 'Logged in as:',bot.user.name)
     print("ID:",bot.user.id)
     print('-----------------------------------------')
-
-
-@tasks.loop(minutes = 180)
-async def on_schedule():
-    message = get_weather()
-    print(Console_Text.Get_Time(), "Weather Report") #makes note in terminal
-    await user.channel.send(message)
-
+    await on_schedule.start()
     
+@tasks.loop(hours = 2.0)
+async def on_schedule():
+    weather = get_weather()
+    assist = "use $ to chat with me\n\t\t\tuse < to tell me what to do!"
+    channel = bot.get_channel(playpen)
+    await channel.send(weather)
+    print(Console_Text.Get_Time(), "scheduled weather sent") #makes note in terminal
+    await channel.send(assist)
+    print(Console_Text.Get_Time(), "scheduled help sent") #makes note in terminal
+    
+"""
 @bot.event
 async def on_message(message): 
     global sched
@@ -40,8 +44,9 @@ async def on_message(message):
         user = message
         on_schedule.start()
         sched = True
+"""
 
-@bot.event
+@bot.event  #(name='on message', help='placing $ in front of something may give a response!')
 async def on_message(message):
     #without this line, commands won't work (it takes all chat messages and passes them into on_message)
     await bot.process_commands(message)
@@ -92,23 +97,23 @@ async def pause(ctx):
     if vc.is_playing():
         vc.pause()
     else:
-        await ctx.send("Lmao can't pause what isn't playing")
+        await ctx.send("Lmao can't pause what isn't playing") #nice
 
-@bot.command(name='resume')
+@bot.command(name='resume', help='resumes song')
 async def resume(ctx):
     vc = ctx.message.guild.voice_client
     if vc.is_paused():
         vc.resume()
     else:
-        await ctx.send("Can't unpause what wasn't paused, dummy")
+        await ctx.send("Can't unpause what wasn't paused, dummy") #nice
 
-@bot.command(name='stop')
+@bot.command(name='stop', help='stops song')
 async def stop(ctx):
     vc = ctx.message.guild.voice_client
     if vc.is_paused() or vc.is_playing():
         vc.stop()
     else:
-        await ctx.send("Can't stop if we never started")
+        await ctx.send("Can't stop if we never started") #nice
 
 
 
@@ -116,3 +121,4 @@ async def stop(ctx):
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 bot.run(TOKEN)
+
