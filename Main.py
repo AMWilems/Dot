@@ -23,6 +23,8 @@ async def on_ready(): #https://superfastpython.com/asyncio-async-def/
     print(Console_Text.Get_Time(), 'Logged in as:',bot.user.name)
     print("ID:",bot.user.id)
     print('-----------------------------------------')
+    on_schedule()
+    help_schedule()
 
 
 @tasks.loop(minutes = 1.0)
