@@ -23,24 +23,18 @@ async def on_ready(): #https://superfastpython.com/asyncio-async-def/
     print(Console_Text.Get_Time(), 'Logged in as:',bot.user.name)
     print("ID:",bot.user.id)
     print('-----------------------------------------')
-    on_schedule()
-    help_schedule()
-
-
-@tasks.loop(minutes = 1.0)
-async def on_schedule():
-    message = get_weather()
-    channel = client.get_channel(playpen)
-    print(Console_Text.Get_Time(), "3 hour Weather Report") #makes note in terminal
-    await user.channel.send(message)
+    await on_schedule.start()
     
+@tasks.loop(hours = 2.0)
+async def on_schedule():
+    weather = get_weather()
+    assist = "use $ to chat with me\n\t\t\tuse < to tell me what to do!"
+    channel = bot.get_channel(playpen)
+    await channel.send(weather)
+    print(Console_Text.Get_Time(), "scheduled weather sent") #makes note in terminal
+    await channel.send(assist)
+    print(Console_Text.Get_Time(), "scheduled help sent") #makes note in terminal
 
-@tasks.loop(minutes = 1.0) #set to 1 for testing purposes
-async def help_schedule():
-    message = "use $ to chat with me\nuse < to tell me what to do! "
-    channel = client.get_channel(playpen)
-    await user.channel.send(message)
-    print(Console_Text.Get_Time(), "sent help") #makes note in terminal
 @bot.event
 async def on_message(message): 
     global sched
@@ -125,3 +119,4 @@ async def stop(ctx):
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
 bot.run(TOKEN)
+
