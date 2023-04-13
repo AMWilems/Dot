@@ -4,6 +4,7 @@ import Console_Text
 import asyncio
 from weather_report import get_weather
 import requests
+import Jokes
 
 SIGNAL = ('$')  #may need to change, unusable in other countries with different keyboard layout,
                 #may be taken at incorrect time
@@ -39,6 +40,9 @@ def check_verbage(message):
         text = "*you're\n\nand no you."
         print(Console_Text.Get_Time(),'get wrecked')
     
+    elif message.content.__contains__('joke'):
+        text = get_joke()
+        print(Console_Text.Get_Time(), "made a funny")
     else:
         text = "hmm I don't know that one"
         print(Console_Text.Get_Time(), "unknown command: ", message.content)
