@@ -13,7 +13,6 @@ from dotenv import load_dotenv #https://pypi.org/project/python-dotenv/
 
 intents = discord.Intents.default() #https://discordpy.readthedocs.io/en/stable/intents.html
 intents.message_content = True
-#TODO determine what intents are needed
 bot = commands.Bot(command_prefix='>', intents=discord.Intents.all()) #https://discordpy.readthedocs.io/en/stable/ext/commands/commands.html
 user  = False
 sched = False
@@ -25,13 +24,16 @@ async def on_ready(): #https://superfastpython.com/asyncio-async-def/
     print('-----------------------------------------')
 
 
-@tasks.loop(minutes = 180)
+@tasks.loop(minutes = 1)
 async def on_schedule():
     message = get_weather()
     print(Console_Text.Get_Time(), "3 hour Weather Report") #makes note in terminal
     await user.channel.send(message)
-
     
+
+@tasks.loop(minutes = 1) #set to 1 for testing purposes
+async def help_schedule():
+    message = "use $ to chat with me\nuse < to tell me what to do! "
 @bot.event
 async def on_message(message): 
     global sched
@@ -41,7 +43,7 @@ async def on_message(message):
         on_schedule.start()
         sched = True
 
-@bot.event(name='on message', help='placing $ in front of something may give a response!')
+@bot.event  #(name='on message', help='placing $ in front of something may give a response!')
 async def on_message(message):
     #without this line, commands won't work (it takes all chat messages and passes them into on_message)
     await bot.process_commands(message)

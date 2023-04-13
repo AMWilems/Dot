@@ -18,7 +18,6 @@ def check_contents(message):
     reply = check_verbage(message)
     return reply
 
-
 def check_verbage(message):
     #default response
     text = 'no message recognized'
