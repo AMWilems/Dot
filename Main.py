@@ -1,7 +1,7 @@
 import discord #https://discordpy.readthedocs.io/en/stable/
 import os
 import chat_response
-import Console_Text
+from Console_Text import Console
 
 import requests
 from weather_report import Weather
@@ -20,7 +20,7 @@ playpen = 1076484086387978290
 
 @bot.event
 async def on_ready(): #https://superfastpython.com/asyncio-async-def/
-    print(Console_Text.Get_Time(), 'Logged in as:',bot.user.name)
+    print(Console.Get_Time(), 'Logged in as:',bot.user.name)
     print("ID:",bot.user.id)
     print('-----------------------------------------')
     await on_schedule.start()
@@ -31,9 +31,9 @@ async def on_schedule():
     assist = "use $ to chat with me\n\t\t\tuse < to tell me what to do!"
     channel = bot.get_channel(playpen)
     await channel.send(weather)
-    print(Console_Text.Get_Time(), "scheduled weather sent") #makes note in terminal
+    print(Console.Get_Time(), "scheduled weather sent") #makes note in terminal
     await channel.send(assist)
-    print(Console_Text.Get_Time(), "scheduled help sent") #makes note in terminal
+    print(Console.Get_Time(), "scheduled help sent") #makes note in terminal
     
 """
 @bot.event
