@@ -1,6 +1,6 @@
 import discord #https://discordpy.readthedocs.io/en/stable/
 import os
-import chat_response
+from chat_response import Chat
 from Console_Text import Console
 
 import requests
@@ -50,10 +50,10 @@ async def on_message(message):
 async def on_message(message):
     #without this line, commands won't work (it takes all chat messages and passes them into on_message)
     await bot.process_commands(message)
-    if (message.author.bot or (chat_response.Check_Intent(message) == False)):
+    if (message.author.bot or (Chat.Check_Intent(message) == False)):
         return
     else:
-        await message.channel.send(chat_response.check_contents(message))
+        await message.channel.send(Chat.check_contents(message))
         
 
 #joins voice channel with the user that called the function
