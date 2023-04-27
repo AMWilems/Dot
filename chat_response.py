@@ -12,14 +12,14 @@ class Chat:
 
     # may be taken at incorrect time
 
-    def Check_Intent(self,message):
+    def Check_Intent(message,self=None):
         if message.content.startswith(self.SIGNAL):
             return True
         else:
             return False  # prevents error 400 bad request in terminal
 
 
-    def check_contents(self,message):
+    def check_contents(message,self=None):
         reply = self.check_verbage(message)
         return reply
 
