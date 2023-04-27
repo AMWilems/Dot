@@ -23,7 +23,7 @@ class Chat:
 
 
     def check_contents(message):
-        reply = message.check_verbage(message)
+        reply = Chat.check_verbage(message)
         return reply
 
 
