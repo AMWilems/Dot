@@ -5,22 +5,25 @@ import asyncio
 from weather_report import Weather
 import requests
 from Jokes import Jokes
+
+SIGNAL = ('$')  # may need to change, unusable in other countries with different keyboard layout,
+
+
 class Chat:
-    def __init__(self):
-        self.Signal = ('$')  # may need to change, unusable in other countries with different keyboard layout,
+
 
 
     # may be taken at incorrect time
 
-    def Check_Intent(message,self=None):
-        if message.content.startswith(self.SIGNAL):
+    def Check_Intent(message):
+        if message.content.startswith(SIGNAL):
             return True
         else:
             return False  # prevents error 400 bad request in terminal
 
 
-    def check_contents(message,self=None):
-        reply = self.check_verbage(message)
+    def check_contents(message):
+        reply = check_verbage(message)
         return reply
 
 
