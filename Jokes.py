@@ -14,15 +14,7 @@ def get_joke():
     response = temp[0]
     return(response['joke'])
 
+"""
 def get_meme():
-    url = "https://reddit-meme.p.rapidapi.com/memes/trending"
-
-    headers = {
-	    "X-RapidAPI-Key": "3e8789e929msh7d6211db050d85cp146690jsneccd5efcbf28",
-	    "X-RapidAPI-Host": "reddit-meme.p.rapidapi.com"
-    }
-
-    info = requests.request("GET", url, headers=headers)
-    temp = json.loads(info.text)
-    response = info[0]
-    return(response["url"])
+    
+"""
