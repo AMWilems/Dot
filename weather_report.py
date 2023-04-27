@@ -1,9 +1,9 @@
 import requests
-
-def get_weather():
-    city = 'Austin'
+class Weather:
+    def get_weather():
+        city = 'Austin'
         
-    url = 'https://wttr.in/{}'.format(city)
-    res = requests.get(url)
+        url = 'https://wttr.in/{}'.format(city)
+        res = requests.get(url)
 
-    return(url)
+        return(url)

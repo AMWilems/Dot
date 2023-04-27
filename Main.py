@@ -4,7 +4,7 @@ import chat_response
 import Console_Text
 
 import requests
-from weather_report import get_weather
+from weather_report import Weather
 from Music_Util import MusicSource
 
 from discord.ext import commands
@@ -27,7 +27,7 @@ async def on_ready(): #https://superfastpython.com/asyncio-async-def/
     
 @tasks.loop(hours = 2.0)
 async def on_schedule():
-    weather = get_weather()
+    weather = Weather.get_weather()
     assist = "use $ to chat with me\n\t\t\tuse < to tell me what to do!"
     channel = bot.get_channel(playpen)
     await channel.send(weather)
