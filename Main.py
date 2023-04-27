@@ -1,10 +1,10 @@
 import discord #https://discordpy.readthedocs.io/en/stable/
 import os
-import chat_response
-import Console_Text
+from chat_response import Chat
+from Console_Text import Console
 
 import requests
-from weather_report import get_weather
+from weather_report import Weather
 from Music_Util import MusicSource
 
 from discord.ext import commands
@@ -20,20 +20,20 @@ playpen = 1076484086387978290
 
 @bot.event
 async def on_ready(): #https://superfastpython.com/asyncio-async-def/
-    print(Console_Text.Get_Time(), 'Logged in as:',bot.user.name)
+    print(Console.Get_Time(), 'Logged in as:',bot.user.name)
     print("ID:",bot.user.id)
     print('-----------------------------------------')
     await on_schedule.start()
     
 @tasks.loop(hours = 2.0)
 async def on_schedule():
-    weather = get_weather()
+    weather = Weather.get_weather()
     assist = "use $ to chat with me\n\t\t\tuse < to tell me what to do!"
     channel = bot.get_channel(playpen)
     await channel.send(weather)
-    print(Console_Text.Get_Time(), "scheduled weather sent") #makes note in terminal
+    print(Console.Get_Time(), "scheduled weather sent") #makes note in terminal
     await channel.send(assist)
-    print(Console_Text.Get_Time(), "scheduled help sent") #makes note in terminal
+    print(Console.Get_Time(), "scheduled help sent") #makes note in terminal
     
 """
 @bot.event
@@ -50,10 +50,10 @@ async def on_message(message):
 async def on_message(message):
     #without this line, commands won't work (it takes all chat messages and passes them into on_message)
     await bot.process_commands(message)
-    if (message.author.bot or (chat_response.Check_Intent(message) == False)):
+    if (message.author.bot or (Chat.Check_Intent(message) == False)):
         return
     else:
-        await message.channel.send(chat_response.check_contents(message))
+        await message.channel.send(Chat.check_contents(message))
         
 
 #joins voice channel with the user that called the function
