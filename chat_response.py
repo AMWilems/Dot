@@ -5,6 +5,7 @@ import asyncio
 from weather_report import Weather
 import requests
 from Jokes import Jokes
+from Trivia import Trivia
 
 SIGNAL = ('$')  # may need to change, unusable in other countries with different keyboard layout,
 
@@ -51,6 +52,31 @@ class Chat:
         elif message.content.__contains__('joke'):
             text = Jokes.get_joke()
             print(Console.Get_Time(), "made a funny")
+        
+        elif message.content.__contains__('random'):
+            trivia = Trivia(message.content, "random")
+            text = trivia.get_random_fact()
+            print(Console.Get_Time(), 'Random Trivia')
+        
+        elif message.content.__contains__('trivia'):
+            trivia = Trivia(message.content, "trivia")
+            text = trivia.get_fact()
+            print(Console.Get_Time(), 'Trivia')
+        
+        elif message.content.__contains__('math'):
+            trivia = Trivia(message.content, "math")
+            text = trivia.get_fact()
+            print(Console.Get_Time(), 'Math Trivia')
+
+        elif message.content.__contains__('date'):
+            print(Console.Get_Time(), 'Date Trivia')
+
+        elif message.content.__contains__('year'):
+            print(Console.Get_Time(), 'Year Trivia')
+
+        elif message.content.__contains__('numbers-help'):
+            text = "List commands here..."
+            print(Console.Get_Time(), 'Numbers Trivia Help')
 
         else:
             text = "hmm I don't know that one"
