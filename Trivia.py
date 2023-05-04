@@ -4,7 +4,7 @@ import json
 
 class Trivia:
 
-    # Class constructor - Paraemter types: (self, string, string)
+    # Class constructor - Parameter types: (self, string, string)
     def __init__(self, message, type) :
         self.type = type
 
