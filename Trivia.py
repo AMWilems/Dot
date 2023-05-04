@@ -8,7 +8,6 @@ class Trivia:
     def __init__(self, message, type) :
         self.type = type
         self.num = self.__remove_prefix(message)
-        print(self.num)
 
     # Class method to return fact given math or trivia type
     def get_fact(self):

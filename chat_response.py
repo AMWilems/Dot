@@ -6,6 +6,7 @@ from weather_report import Weather
 import requests
 from Jokes import Jokes
 from Trivia import Trivia
+from TwitchAPI import Twitch
 
 SIGNAL = ('$')  # may need to change, unusable in other countries with different keyboard layout,
 
@@ -74,15 +75,14 @@ class Chat:
             print(Console.Get_Time(), 'Trivia')
         
         elif message.content.__contains__('math'):
+            # Create Trivia() object in order to call API
             trivia = Trivia(message.content, "math")
+
+            # Call the API with method in Trivia class and store to user output
             text = trivia.get_fact()
+
+            # Log user interatction and time to console
             print(Console.Get_Time(), 'Math Trivia')
-
-        # elif message.content.__contains__('date'):
-        #     print(Console.Get_Time(), 'Date Trivia')
-
-        # elif message.content.__contains__('year'):
-        #     print(Console.Get_Time(), 'Year Trivia')
 
         elif message.content.__contains__('numbers-help'):
             # Set output to intended command use
@@ -92,6 +92,31 @@ class Chat:
             
             # Log user interatction and time to console
             print(Console.Get_Time(), 'Numbers Trivia Help')
+        
+        elif message.content.__contains__('twitch-connect'):
+            # Create Twitch() object in order to call API
+            twitch = Twitch()
+
+            # Request and authorize user access token to Twitch API
+            twitch.authorize_user_token()
+
+            # Remove user input prefix to extract username from user
+            username = twitch.remove_prefix(message.content)
+
+            # Set the corresponding text to notify user of successful connection to Twitch
+            text = "Verifying user credentials...\n" \
+                   + username + " successfully connected to Twitch!"
+            
+            # Log user interatction and time to console
+            print(Console.Get_Time(), username, "Granted app access token to Twitch API")
+
+        elif message.content.__contains__('twitch-help'):
+             # Set output to intended command use
+            text = "$twitch-connect 'twitch_username' ---> Connects account to Twitch for Twitch functionality!\n" \
+                   "DISCLAIMER: this is the only Twitch funtionality as of now..."
+            
+            # Log user interatction and time to console
+            print(Console.Get_Time(), 'Twitch Commands Help')
 
         else:
             text = "hmm I don't know that one"
