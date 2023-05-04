@@ -85,13 +85,18 @@ class Chat:
         #     print(Console.Get_Time(), 'Year Trivia')
 
         elif message.content.__contains__('numbers-help'):
+            # Set output to intended command use
             text = "$math 'integer_value' ---> Displays cool math fact about specified integer value!\n" \
                    "$trivia 'integer_value' ---> Displays cool trivia fact about specified integer value!\n" \
                    "$random ---> Displays cool random fact!" 
+            
+            # Log user interatction and time to console
             print(Console.Get_Time(), 'Numbers Trivia Help')
 
         else:
             text = "hmm I don't know that one"
+
+            # Log user interatction and time to console
             print(Console.Get_Time(), "unknown command: ", message.content)
 
         return text
