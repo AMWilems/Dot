@@ -54,13 +54,23 @@ class Chat:
             print(Console.Get_Time(), "made a funny")
         
         elif message.content.__contains__('random'):
+            # Create Trivia() object in order to call API
             trivia = Trivia(message.content, "random")
+
+            # Call the API with method in Trivia class and store to user output
             text = trivia.get_random_fact()
+
+            # Log user interatction and time to console
             print(Console.Get_Time(), 'Random Trivia')
         
         elif message.content.__contains__('trivia'):
+            # Create Trivia() object in order to call API
             trivia = Trivia(message.content, "trivia")
+
+            # Call the API with method in Trivia class and store to user output
             text = trivia.get_fact()
+
+            # Log user interatction and time to console
             print(Console.Get_Time(), 'Trivia')
         
         elif message.content.__contains__('math'):
@@ -68,14 +78,16 @@ class Chat:
             text = trivia.get_fact()
             print(Console.Get_Time(), 'Math Trivia')
 
-        elif message.content.__contains__('date'):
-            print(Console.Get_Time(), 'Date Trivia')
+        # elif message.content.__contains__('date'):
+        #     print(Console.Get_Time(), 'Date Trivia')
 
-        elif message.content.__contains__('year'):
-            print(Console.Get_Time(), 'Year Trivia')
+        # elif message.content.__contains__('year'):
+        #     print(Console.Get_Time(), 'Year Trivia')
 
         elif message.content.__contains__('numbers-help'):
-            text = "List commands here..."
+            text = "$math 'integer_value' ---> Displays cool math fact about specified integer value!\n" \
+                   "$trivia 'integer_value' ---> Displays cool trivia fact about specified integer value!\n" \
+                   "$random ---> Displays cool random fact!" 
             print(Console.Get_Time(), 'Numbers Trivia Help')
 
         else:
