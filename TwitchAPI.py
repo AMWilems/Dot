@@ -34,7 +34,7 @@ class Twitch():
         # Set class member variable 'has_valid_token' to True
         self.has_valid_token = True
     
-    # Private class method to remove prefix from user inpu
+    # Class method to remove prefix from user input
     def remove_prefix(self, text):
         words = text.split()
         if len(words) >= 2:
