@@ -22,8 +22,8 @@ class Twitch():
 
         # Load into a dictionary in order to more easily work with
         self.data = {
-            'client_id' : 'l9lwpc7k4zsmu2mphiuku5thumguht',
-            'client_secret' : '5nc2a3uhs3orwxp5dsbjxztjhqbomb',
+            'client_id' : self.client_id,
+            'client_secret' : self.client_secret,
             'grant_type' : 'client_credentials'
         }
 
