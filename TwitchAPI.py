@@ -1,5 +1,7 @@
 # Import necessary libraries
 import requests
+from dotenv import load_dotenv
+import os
 
 class Twitch():
 
@@ -8,9 +10,14 @@ class Twitch():
         # Build correct url to direct user to Twitch oAuth path
         self.url = "https://id.twitch.tv/oauth2/token"
 
+        # Get client details from .env
+        load_dotenv()
+        id = os.getenv("client_id")
+        secret = os.getenv("client_secret")
+
         # Set required parameters
-        self.client_id = "l9lwpc7k4zsmu2mphiuku5thumguht"
-        self.client_secret = "5nc2a3uhs3orwxp5dsbjxztjhqbomb"
+        self.client_id = str(id)
+        self.client_secret = str(secret)
         self.grant_type = "client_credentials"
 
         # Load into a dictionary in order to more easily work with
