@@ -75,9 +75,11 @@ After doing so, save your changes, and exit the file.
 once all dependancies are in place, and .env file has been properly set up, the bot should run as intended on your local system!
 ## Running Tests
 
-To run tests, run the following command
-
+For testing, 2 different approaches are needed. for API connection testing of weather, and for output validation of chat responses, the following code can be ran to test these functions with built in functions from the source code:
 ```bash
   npm run test
 ```
+    
+For other functions, manual testing is needed. the list below shows how to run the tests for each function
+    Music: to test music, a user must first connect to a voice channel 
 
