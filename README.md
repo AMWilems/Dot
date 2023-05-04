@@ -49,7 +49,7 @@ in the .env, the Discord token should be placed within for secure connection to 
 
 ```bash
 DISCORD_TOKEN=<your discord token>
-
+```
 
 in the .env, the Twitch API client_id and client_secret should be place for secure connection to the API with the following syntax:
 
